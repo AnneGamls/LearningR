@@ -108,3 +108,45 @@ use always the here::here() function
 This makes the work reproducible 
 Instead of setting the work directory
 
+# Data cleaning
+
+You can set and switch between long and wide format with tidy data
+
+*importer statafiler
+
+ #```{r}
+# library(haven)
+# read_dta("datanavn.dta")
+# ```
+
+lav plots og grafer med ggplot2 i stedet for r-pakken.
+Kig på den gule boks: det er opsætningen af selve koden med options.
+```{r}
+ggplot(post_meal_data, aes(x = BMI)) + 
+  geom_histogram()
+```
+
+
+```{r}
+#| fig-cap: "histogram BMI"
+#| label: fig-bmi-histo
+ggplot(post_meal_data, aes(x = BMI)) + 
+  geom_histogram()
+```
+
+@fig-bmi-histo
+
+geom_point() and geom_smooth() ggplot2 styler 
+
+## Exercise: discrete plots
+
+```{r}
+#| fig-cap: "glykemi"
+#| label: fig-glykemi-bar
+ggplot(post_meal_data, aes(x = glykemi)) +
+  geom_bar()
+```
+
+@fig-glykemi-bar
+
+
