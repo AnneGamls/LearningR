@@ -1,5 +1,7 @@
 # LearningR: Intro R course
 
+# Anne Gaml-Sørensen
+
 TODO: Give a brief description of what your project is about
 
 This project...

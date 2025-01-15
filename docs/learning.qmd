@@ -1,0 +1,103 @@
+---
+title: "Reproducible document"
+author: "Anne Gaml-Sørensen"
+format: html
+---
+Header tells Quarto about the format
+
+Here a header is marked by ## 
+This can be visualized in the outline
+
+## Basic of R
+
+ctrl shift p: insert code chunk:
+Markdown outside the brackets. 
+Code inside.
+
+```{r}
+1 + 1
+```
+ctrl enter: runs the line
+
+ctrl s: saving
+
+The c() function puts values together 
+and head() prints the first 6 rows
+
+A vector is a set of items (a string)
+A data frame is rows and columns (vectors put side by side)
+
+## Setup code chunk
+
+```{r setup}
+library(tidyverse)
+library(tidyverse)
+post_meal_data <- read_csv2(here::here("data/post-meal-insulin.csv"))
+```
+
+Here under setup you write import data and install packages, because this is the thing that is run first
+
+### formating in Markdown
+**bold**	bold
+*italics*	italics
+super^script^	superscript
+sub~script~	subscript
+
+ # Exercise 6.9
+ 
+ Create one level 2 header (##) called “About me” below the setup code chunk.
+Below this new level 2 header, insert a list (either numbered or unnumbered) with your name and affiliation(s)/institution(s).
+Below the list, write one or two simple sentences about yourself. Include one word in bold and another in italics.
+Create another level 2 header (##) called “Simple code”.
+Insert a code chunk below this level 2 header that multiplies 3 * 3 and run it.
+
+
+## About me
+
+1. Anne Gaml-Sørensen
+2. Department of Public Health
+3. DK, Aarhus University
+
+- Anne Gaml-Sørensen
+- Department of Public Health
+- DK, Aarhus University
+
+
+I am very **bold**
+I love *italian(cs)* food
+
+## Simple code
+
+
+```{r}
+3 * 3
+``` 
+
+Commiting (in git): saving the work in a history (making a snapshot of a version of a file). This gives you transparency and you can see, who does what. 
+Git: press 'commit' to open.
+
+Pull (download) and push (opload) is used to communicate with github.
+
+In commit message, you write what you oplaod or change
+
+green: added
+Red: text removed
+
+## Testing for Git
+
+I have commited something.
+I dont know where git is now in the interface og R?
+I have to open a project first (right corner above)
+
+For Stata files, you can use the package haven to import those types of data files into R.
+
+## Showing the data
+
+```{r}
+post_meal_data
+```
+```{r}
+glimpse(post_meal_data)
+```
+
+
