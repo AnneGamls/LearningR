@@ -37,6 +37,8 @@ A data frame is rows and columns (vectors put side by side)
 library(tidyverse)
 library(tidyverse)
 post_meal_data <- read_csv2(here::here("data/post-meal-insulin.csv"))
+
+small_post_meal_data <- select(post_meal_data, id, Age, BMI, Group, auc_pg, auc_ins, glykemi)
 ```
 
 Here under setup you write import data and install packages, because this is the thing that is run first
@@ -258,3 +260,18 @@ Afterwards I can pull it to my local folder
 ## Pulling changes locally
 
 
+# Data wrangling (= data management)
+
+### selecting data
+
+```{r}
+select(post_meal_data, Age)
+
+select(post_meal_data, Age, BMI, Weight)
+
+select(post_meal_data, -Group)
+
+select(post_meal_data, starts_with("PG"))
+select(post_meal_data, ends_with("DXA"))
+select(post_meal_data, contains("0"))
+```
