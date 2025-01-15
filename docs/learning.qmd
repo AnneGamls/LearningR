@@ -259,8 +259,3 @@ usethis::create_github_token()
 usethis::gh_token_help()
 ```
 
-```{r}
-gitcreds::gitcreds_set()
-```
-
-
