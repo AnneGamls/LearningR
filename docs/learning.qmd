@@ -275,3 +275,19 @@ select(post_meal_data, starts_with("PG"))
 select(post_meal_data, ends_with("DXA"))
 select(post_meal_data, contains("0"))
 ```
+
+# Using pipe
+
+###The pipe |> takes the output from the object or function from the left of the operator and puts it into the function on the right of the operator. All input goes into the first position argument of the function. Within the tidyverse packages, all functions take a data frame (or vector) as the first argument in order to work with the pipe.
+
+## Renaming specific columns
+```{r}
+small_post_meal_data |> 
+  rename(auc_glucose = auc_pg)
+
+small_post_meal_data |>
+  rename(auc_glucose = auc_pg,
+        auc_insulin = auc_ins)
+
+```
+
