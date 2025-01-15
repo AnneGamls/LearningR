@@ -243,7 +243,6 @@ post_meal_data |>
 #| fig-cap: "Scatterplot of BMI and the auc for glucose."
 #| label: fig-bmi-auc-pg
 ggplot(post_meal_data, aes(x = BMI, y = auc_pg)) +
-  geom_point() +
   geom_smooth()
 ```
 
@@ -251,13 +250,6 @@ ggplot(post_meal_data, aes(x = BMI, y = auc_pg)) +
 
 Make a password:
 
-```{r}
-usethis::create_github_token()
-```
-
-```{r}
-usethis::gh_token_help()
-```
 ## Pushing changes to remote (Github)
 
 Now I write directly in Github. 
