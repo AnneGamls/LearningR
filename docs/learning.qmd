@@ -260,4 +260,9 @@ usethis::gh_token_help()
 ```
 ## Pushing changes to remote (Github)
 
+Now I write directly in Github. 
+Afterwards I can pull it to my local folder
+
+## Pulling changes locally
+
 
