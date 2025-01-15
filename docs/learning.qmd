@@ -122,7 +122,7 @@ You can set and switch between long and wide format with tidy data
 lav plots og grafer med ggplot2 i stedet for r-pakken.
 Kig på den gule boks: det er opsætningen af selve koden med options.
 ```{r}
-ggplot(post_meal_data, aes(x = BMI)) + 
+ggplot(post_meal_data, aes(x = BMI)) +
   geom_histogram()
 ```
 
@@ -130,7 +130,7 @@ ggplot(post_meal_data, aes(x = BMI)) +
 ```{r}
 #| fig-cap: "histogram BMI"
 #| label: fig-bmi-histo
-ggplot(post_meal_data, aes(x = BMI)) + 
+ggplot(post_meal_data, aes(x = BMI)) +
   geom_histogram()
 ```
 
@@ -148,5 +148,106 @@ ggplot(post_meal_data, aes(x = glykemi)) +
 ```
 
 @fig-glykemi-bar
+
+here this way is nicer to look at:
+
+```{r}
+post_meal_data |>
+  ggplot(aes(x = Group, fill = glykemi)) +
+  geom_bar()
+```
+
+```{r}
+post_meal_data |>
+  ggplot(aes(x = Group, fill = as.character(glykemi))) +
+  geom_bar()
+```
+
+### which kind of variables do I have
+
+```{r}
+class(post_meal_data$glykemi)
+```
+```{r}
+class(post_meal_data$Group)
+```
+```{r}
+post_meal_data |>
+  ggplot(aes(x = Group, fill = as.character(glykemi))) +
+  geom_bar(position = position_dodge())
+```
+ 
+If you want help search
+help (geom_bar) 
+
+## Putting two plots side by side
+
+```{r}
+ggplot(post_meal_data, aes(x = BMI)) +
+  geom_histogram()
+```
+
+```{r}
+ggplot(post_meal_data, aes(x = glykemi)) +
+  geom_bar()
+```
+
+```{r combines two plots}
+#| label: fig-bmi-glykemi
+#| fig-cap: "BMI and glykemi, side by side."
+#| fig-subcap:
+#|   - "Distribution of BMI."
+#|   - "Number of those with glykemi"
+#| layout-ncol: 2
+ggplot(post_meal_data, aes(x = BMI)) +
+  geom_histogram()
+
+ggplot(post_meal_data, aes(x = glykemi)) +
+  geom_bar()
+```
+
+```{r}
+ggplot(post_meal_data, aes(x = glykemi, y = Group)) +
+  geom_col()
+```
+
+## formatting
+
+write in lower level cases with _ separating words
+for example: learning_r
+
+```{r}
+post_meal_data |>
+  mean(BMI)
+```
+```{r}
+class(post_meal_data$BMI)
+```
+*if (x == 1) {
+*y <- 2
+*}
+
+## PLotting two continous variables
+
+The independent variable on the x-axis. 
+The dependent variable on the y-axis. 
+
+Options are:
+post_meal_data |>
+  geom_point()
+  geom_hex()
+  geom_smooth()
+
+  
+```{r}
+#| fig-cap: "Scatterplot of BMI and the auc for glucose."
+#| label: fig-bmi-auc-pg
+ggplot(post_meal_data, aes(x = BMI, y = auc_pg)) +
+  geom_point() +
+  geom_smooth()
+```
+
+
+
 
 
