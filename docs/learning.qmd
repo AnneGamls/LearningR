@@ -47,6 +47,12 @@ tidier_post_meal_data <- small_post_meal_data |>
   ) |>
   filter(glykemi == 0) |>
   select(-glykemi)
+
+tidied_post_meal_data <- tidier_post_meal_data |>
+  mutate(
+    insulin_glucose_ratio = auc_insulin / auc_glucose,
+    Group = if_else(Group == "CTR", "Control", "First-degree relative")
+  )
 ```
 
 Here under setup you write import data and install packages, because this is the thing that is run first
@@ -364,8 +370,69 @@ You always write the TRUE first and then FALSE
 
 ```{r}
 tidier_post_meal_data |>
-  mutate(insulin_glucose_ratio = 
-           auc_insulin/auc_glucose,
-         Group = if_else(Group == "CTR", "Control", "First-degree relative"))
+  mutate(
+    insulin_glucose_ratio =
+      auc_insulin / auc_glucose,
+    Group = if_else(Group == "CTR", "Control", "First-degree relative")
+  )
 ```
 
+## Practice with filter and mutate
+
+16
+Use filter() to find how many participants have a BMI of more than or equal to 20 and less than or equal to 40, and are in the “FDR” Group. How many are there?
+
+Create a percent_body_fat column with mutate() by dividing the Fat.mass.DXA by the Weight, then multiplying by 100. Hint: In R, use * to multiply and / to divide. Then pipe to filter() to find out how many participants have a percent_body_fat greater than 30.
+10
+
+```{r}
+post_meal_data |>
+  filter(BMI >= 20 & BMI <= 40 & Group == "FDR")
+
+post_meal_data |>
+  mutate(
+    percent_body_fat = (Fat.mass.DXA / Weight) * 100
+  ) |>
+  filter(percent_body_fat > 30)
+```
+
+# 12: Visualisation and wrangling
+
+## Jitter plot
+
+But remember to also try out a violin plot
+
+```{r}
+tidied_post_meal_data |>
+  mutate(overweight = if_else(BMI >= 25,
+    "Overweight", "Not overweight"
+  )) |>
+  ggplot(aes(x = overweight, y = insulin_glucose_ratio)) +
+  geom_jitter()
+```
+If you want the same figure every time, you should set a seed
+
+## Plotting three or more variables
+
+```{r}
+tidied_post_meal_data |>
+  filter(BMI < 30) |>
+  ggplot(aes(x = Age, y = auc_insulin, colour = Group)) +
+  geom_point()
+```
+
+
+```{r}
+tidied_post_meal_data |>
+  filter(BMI < 30) |>
+  mutate(young = if_else(Age < 40, "Young", "Old")) |>
+  ggplot(aes(x = BMI, y = insulin_glucose_ratio, colour = Group)) +
+  geom_point() +
+  facet_grid(col = vars(young)) +
+  labs(
+    x = "Body mass index",
+    y = "Insulin to glucose ratio"
+  )
+```
+You can change rows and columns
+Read more on the ggplot website
